@@ -31,10 +31,10 @@ timeout=3000
   icon = "facebook"
   url = "https://www.facebook.com/smyrnov"
 
-# [[params.social]]
-#   name = "Instagram"
-#   icon = "instagram"
-#   url = "https://www.instagram.com/dmitry_smyrnov"
+[[params.social]]
+  name = "Instagram"
+  icon = "instagram"
+  url = "https://www.instagram.com/dmitry_smyrnov"
 
 
 [[params.social]]
