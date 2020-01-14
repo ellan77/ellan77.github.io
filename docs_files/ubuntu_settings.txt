@@ -1,0 +1,102 @@
+
+
+#   1. Go to configure the update manager -> Ubuntu software -> tic for 4 first boxes -> Download from and choose best server -> Other software and tic Canonical Partners
+#   2. Install Drivers
+#   3. Install Synaptic package manager 
+#   4. Install additional codecs, MS fonts, flash and a few more useful packages
+#   5. Region & Languages
+# 	6. Display -> Night Light
+#   7. Tweak LibreOffice
+#     Tools -> Options... -> Advanced -> Disable Use a Java
+#	    View -> Tool bar layout -> Single layout
+
+sudo add-apt-repository ppa:openshot.developers/ppa
+sudo add-apt-repository ppa:atareao/atareao
+sudo add-apt-repository ppa:ubuntu-wine/ppa
+sudo add-apt-repository ppa:geary-team/releases
+#   Remove Amazon launcher
+sudo apt purge ubuntu-web-launchers 
+sudo apt update
+sudo apt install ubuntu-restricted-extras openjdk-8-jre openjdk-8-headless libdvd-pkg flashplugin-installer apt-xapian-index microcode bleachbit telegram libavcodec-extra adobe-flashplugin fonts-powerline
+sudo apt install vlc 
+sudo apt install gimp
+sudo apt install synaptic
+sudo apt install gdebi
+sudo apt install caffeine
+sudo apt install geary
+sudo apt install corebird
+sudo apt install shotwell
+sudo apt install neofetch
+sudo apt install shutter
+sudo apt install quiterss
+sudo apt install calibre
+sudo apt install my-weather-indicator
+sudo apt install transmission
+sudo apt install gradio
+sudo apt install openvpn network-manager-openvpn
+sudo apt install openshot-qt 
+sudo apt install preload
+sudo apt install mc 
+sudo apt install aptitude 
+sudo apt install GParted
+sudo apt install FileZilla
+sudo apt install VLC
+sudo apt install Synaptic
+sudo apt install dconf
+sudo apt install simplescreenrecorder
+sudo apt install gdebi
+sudo apt install ubuntu-restricted-extras libavcodec-extra libdvd-pkg
+sudo apt install adobe-flashplugin
+sudo apt install -y psensor inxi
+sudo apt install p7zip-full
+
+
+#winetricks 
+#aria2 
+#wine1.7 
+#franz 
+#feedreader 
+#Dropbox 
+#simplenote 
+#chrome-gnome-shell 
+#slack 
+#discord 
+#viber 
+#chromium-browser 
+#gnome-tweak-tool 
+#radiotray calibre
+#gbedi
+#viber
+#etcher
+#PCManFM 
+#uGet
+#Audacious
+#Transmission
+#Shutter
+#Simple Screen Recorder
+#fonts-powerline #for theme zsh https://github.com/powerline/fonts
+#Atom
+#VSCode
+
+
+
+#	скачать systemback , переместить в /opt и там выполнить, обязательно должен быть подключен интернет:
+#	tar xvf systemback-install_pack-1.9.3.tar.xz
+#	cd systemback-install_pack-1.9.3/
+#	./install.sh
+
+#	sysctl -w vm.swappiness=10 (используем озу на 90%)(только для большого обьема памяти)
+#	cat /proc/sys/vm/swappiness (посмотреть параметр) 
+#	sysctl -p (применяем настройку) 
+
+#	Увеличение скорости подключения к интернет
+#	sudo gedit /etc/nsswitch.conf
+#	ниже строчки
+#	hosts: files mdns4_minimal [NOTFOUND=return] dns mdns4
+#	вставить
+#	hosts: files dns
+#	сохранить, перезагрузить.
+
+
+
+

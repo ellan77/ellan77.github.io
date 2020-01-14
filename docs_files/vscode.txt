@@ -1,0 +1,25 @@
+MACOS:
+(F1 or ⇧+⌘+P on Mac) and type shell command to find the Shell Command: Install 'code' command in PATH command.
+
+
+Plagins:
+all autocomplete
+autoprefixer
+beautify
+bootstrap 4 snippets
+eslint
+github
+live sass compiler
+live server
+sass
+vscode-icons
+ERB
+ERB-VSCode-snippets
+1mm themes
+Icon fonts
+Prettier
+auto import 
+code spell checker
+1. "emmet.includeLanguages": {"erb": "html"} as mentioned by @coisnep
+2. install ERB Craig Maslowsk " extensions..... it helps erb syntax highlighting
+
