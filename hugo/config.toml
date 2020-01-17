@@ -8,7 +8,7 @@ timeout=3000
 [params]
 #   subtitle= "Software Engineer"
   interests="Open Source, Linux, Python, Django, NodeJS, React, Next, Gatsby, GoLang "
-  cv_name= "HadiSinaee_CV.pdf"
+  # cv_name= "HadiSinaee_CV.pdf"
 #   blog="http://myblog.edu"
 
 [[params.affilation]]
