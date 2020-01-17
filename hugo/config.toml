@@ -7,7 +7,7 @@ timeout=3000
 
 [params]
 #   subtitle= "Software Engineer"
-  interests="Python, Django, NodeJS, React, Next, Gatsby, GoLang "
+  interests="Open Source, Linux, Python, Django, NodeJS, React, Next, Gatsby, GoLang "
   cv_name= "HadiSinaee_CV.pdf"
 #   blog="http://myblog.edu"
 
@@ -26,21 +26,28 @@ timeout=3000
 #   icon = "github"
 #   url = "https://github.com/hadisinaee"
 
+
 [[params.social]]
   name = "Facebook"
   icon = "facebook"
   url = "https://www.facebook.com/smyrnov"
-
-[[params.social]]
-  name = "Instagram"
-  icon = "instagram"
-  url = "https://www.instagram.com/dmitry_smyrnov"
-
-
 [[params.social]]
   name = "LinkedIn"
   icon = "linkedin"
   url = "https://www.linkedin.com/in/dmitry-smyrnov-152085ab"
+# [[params.social]]
+#   name = "Twitter"
+#   icon = "twitter"
+#   url = "https://twitter.com/dmitry_smyrnov"
+# [[params.social]]
+#   name = "Instagram"
+#   icon = "instagram"
+#   url = "https://www.instagram.com/dmitry_smyrnov"
+
+
+
+
+
 
 
 [[params.introduction.paragraph]]
