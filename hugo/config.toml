@@ -14,7 +14,7 @@ timeout=3000
 [[params.affilation]]
 #   name = "Stanford University"
   position = "Software Engineer"
-  contact = "smyrnovd@gmail.com"
+  # contact = "smyrnovd@gmail.com"
 
 # [[params.affilation]]
 #   name = "MyCoolStartup"
@@ -35,6 +35,10 @@ timeout=3000
   name = "LinkedIn"
   icon = "linkedin"
   url = "https://www.linkedin.com/in/dmitry-smyrnov-152085ab"
+  [[params.social]]
+  name = "Telegram"
+  icon = "send"
+  url = "https://t.me/smyrnovd"
 # [[params.social]]
 #   name = "Twitter"
 #   icon = "twitter"
