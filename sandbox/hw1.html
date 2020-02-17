@@ -45,61 +45,49 @@
       <div id="box"></div>
     </div>
     <script>
-      class Box {
+      class View {
         constructor() {
           this.app = document.getElementById("box");
-          this.boxLoad();
-        }
-        showFullDesc() {
-          if (this.desc.textContent !== desc_text) {
-            this.desc.textContent = desc_text;
-          } else {
-            this.desc.textContent = desc_text_short;
-          }
         }
 
-        boxLoad() {
-          return fetch(
-            "https://my-json-server.typicode.com/IlyaLytvynov/ads-box-server/ads"
-          ).then(res => {
-            if (res.ok) {
-              res.json().then(res => {
-                console.log(res[0]);
-                this.img = this.createElement("img", "image");
-                this.img.setAttribute("src", res[0].img);
-                this.title = this.createElement("div", "title");
-                this.title.textContent = res[0].title;
+        box(item) {
+          // console.log(item);
+          this.img = this.createElement("img", "image");
+          this.img.setAttribute("src", item.img);
+          this.title = this.createElement("div", "title");
+          this.title.textContent = item.title;
+          this.desc = this.createElement("p", "description");
+          var desc_text = item.description;
+          var desc_text_short = desc_text.slice(0, 52) + "...";
+          this.desc.textContent = desc_text_short;
 
-                this.desc = this.createElement("p", "description");
-                var desc_text = res[0].description;
-                var desc_text_short = desc_text.slice(0, 52) + "...";
-                this.desc.textContent = desc_text_short;
-
-                this.toggle = this.createElement("a", "toggle");
-                this.toggle.textContent = "Toggle";
-                this.toggle.setAttribute("href", "javascript:showFullDesc()");
-                this.app.append(this.img);
-                this.app.append(this.title);
-                this.app.append(this.desc);
-                this.app.append(this.toggle);
-                this.but1 = this.createElement("button");
-                this.but2 = this.createElement("button");
-                this.but3 = this.createElement("button");
-                this.but4 = this.createElement("button");
-                this.but1.textContent = "<<<";
-                this.but2.textContent = "<";
-                this.but3.textContent = ">";
-                this.but4.textContent = ">>>";
-
-                this.app.append(this.but1);
-                this.app.append(this.but2);
-                this.app.append(this.but3);
-                this.app.append(this.but4);
-              });
+          this.app.append(this.img);
+          this.app.append(this.title);
+          this.app.append(this.desc);
+          this.toggle = this.createElement("a", "toggle");
+          this.toggle.textContent = "Toggle";
+          this.toggle.setAttribute("href", "#");
+          this.toggle.addEventListener("click", function() {
+            if (this.desc.textContent !== desc_text) {
+              this.desc.textContent = desc_text;
             } else {
-              console.log("sorry data didn't loaded");
+              this.desc.textContent = desc_text_short;
             }
           });
+          this.app.append(this.toggle);
+          this.but1 = this.createElement("button");
+          this.but2 = this.createElement("button");
+          this.but3 = this.createElement("button");
+          this.but4 = this.createElement("button");
+          this.but1.textContent = "<<<";
+          this.but2.textContent = "<";
+          this.but3.textContent = ">";
+          this.but4.textContent = ">>>";
+
+          this.app.append(this.but1);
+          this.app.append(this.but2);
+          this.app.append(this.but3);
+          this.app.append(this.but4);
         }
 
         createElement(elementTag, elementClass) {
@@ -110,7 +98,49 @@
           return element;
         }
       }
-      new Box();
+
+      class Box {
+        constructor(view) {
+          this.view = view;
+          var item = 0;
+          this.dataLoad(item);
+
+          this.view.but1.addEventListener("click", function() {
+            item = 0;
+            this.dataLoad(item);
+          });
+          this.view.but2.addEventListener("click", function() {
+            item -= 1;
+            if (item < 0) item = 4;
+            this.dataLoad(item);
+          });
+          this.view.but3.addEventListener("click", function() {
+            item += 1;
+            if (item > 4) item = 0;
+            this.dataLoad(item);
+          });
+          this.view.but4.addEventListener("click", function() {
+            item = 4;
+            this.dataLoad(item);
+          });
+        }
+
+        async dataLoad(item) {
+          return await fetch(
+            "https://my-json-server.typicode.com/IlyaLytvynov/ads-box-server/ads"
+          ).then(res => {
+            if (res.ok) {
+              res.json().then(res => {
+                console.log(res[item]);
+                this.view.box(res[item]);
+              });
+            } else {
+              console.log("sorry data didn't loaded");
+            }
+          });
+        }
+      }
+      new Box(new View());
     </script>
   </body>
 </html>
