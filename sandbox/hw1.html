@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>hw1-react</title>
+  </head>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #box {
+      height: 400px;
+      width: 400px;
+      /* background-color: #e3e3e3; */
+      box-shadow: 5px 5px 5px 2px #eee;
+    }
+    .image {
+      width: 100%;
+    }
+    .description {
+      font-size: 14px;
+    }
+    .title {
+      color: #fb6600;
+      font-weight: 700;
+      font-size: 18px;
+    }
+    .toggle {
+      margin-bottom: 10px;
+      display: block;
+      color: rgb(255, 145, 0);
+      /* padding-top: 15px; */
+      text-decoration: none;
+    }
+  </style>
+  <body>
+    <div class="container">
+      <div id="box"></div>
+    </div>
+    <script>
+      class Box {
+        constructor() {
+          this.app = document.getElementById("box");
+          this.boxLoad();
+        }
+        showFullDesc() {
+          if (this.desc.textContent !== desc_text) {
+            this.desc.textContent = desc_text;
+          } else {
+            this.desc.textContent = desc_text_short;
+          }
+        }
+
+        boxLoad() {
+          return fetch(
+            "https://my-json-server.typicode.com/IlyaLytvynov/ads-box-server/ads"
+          ).then(res => {
+            if (res.ok) {
+              res.json().then(res => {
+                console.log(res[0]);
+                this.img = this.createElement("img", "image");
+                this.img.setAttribute("src", res[0].img);
+                this.title = this.createElement("div", "title");
+                this.title.textContent = res[0].title;
+
+                this.desc = this.createElement("p", "description");
+                var desc_text = res[0].description;
+                var desc_text_short = desc_text.slice(0, 52) + "...";
+                this.desc.textContent = desc_text_short;
+
+                this.toggle = this.createElement("a", "toggle");
+                this.toggle.textContent = "Toggle";
+                this.toggle.setAttribute("href", "javascript:showFullDesc()");
+                this.app.append(this.img);
+                this.app.append(this.title);
+                this.app.append(this.desc);
+                this.app.append(this.toggle);
+                this.but1 = this.createElement("button");
+                this.but2 = this.createElement("button");
+                this.but3 = this.createElement("button");
+                this.but4 = this.createElement("button");
+                this.but1.textContent = "<<<";
+                this.but2.textContent = "<";
+                this.but3.textContent = ">";
+                this.but4.textContent = ">>>";
+
+                this.app.append(this.but1);
+                this.app.append(this.but2);
+                this.app.append(this.but3);
+                this.app.append(this.but4);
+              });
+            } else {
+              console.log("sorry data didn't loaded");
+            }
+          });
+        }
+
+        createElement(elementTag, elementClass) {
+          const element = document.createElement(elementTag);
+          if (elementClass) {
+            element.classList.add(elementClass);
+          }
+          return element;
+        }
+      }
+      new Box();
+    </script>
+  </body>
+</html>
