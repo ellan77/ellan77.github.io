@@ -35,7 +35,7 @@
     .toggle {
       margin-bottom: 10px;
       display: block;
-      color: rgb(255, 145, 0);
+      color: #fb6600;
       /* padding-top: 15px; */
       text-decoration: none;
     }
@@ -46,35 +46,19 @@
     </div>
     <script>
       class View {
+        //Create all elements
         constructor() {
           this.app = document.getElementById("box");
-        }
 
-        box(item) {
-          // console.log(item);
+          this.item = 0;
+          this.toggleMode = false;
+
           this.img = this.createElement("img", "image");
-          this.img.setAttribute("src", item.img);
           this.title = this.createElement("div", "title");
-          this.title.textContent = item.title;
           this.desc = this.createElement("p", "description");
-          var desc_text = item.description;
-          var desc_text_short = desc_text.slice(0, 52) + "...";
-          this.desc.textContent = desc_text_short;
-
-          this.app.append(this.img);
-          this.app.append(this.title);
-          this.app.append(this.desc);
           this.toggle = this.createElement("a", "toggle");
           this.toggle.textContent = "Toggle";
           this.toggle.setAttribute("href", "#");
-          this.toggle.addEventListener("click", function() {
-            if (this.desc.textContent !== desc_text) {
-              this.desc.textContent = desc_text;
-            } else {
-              this.desc.textContent = desc_text_short;
-            }
-          });
-          this.app.append(this.toggle);
           this.but1 = this.createElement("button");
           this.but2 = this.createElement("button");
           this.but3 = this.createElement("button");
@@ -84,12 +68,17 @@
           this.but3.textContent = ">";
           this.but4.textContent = ">>>";
 
+          this.app.append(this.img);
+          this.app.append(this.title);
+          this.app.append(this.desc);
+          this.app.append(this.toggle);
           this.app.append(this.but1);
           this.app.append(this.but2);
           this.app.append(this.but3);
           this.app.append(this.but4);
         }
 
+        //Util method
         createElement(elementTag, elementClass) {
           const element = document.createElement(elementTag);
           if (elementClass) {
@@ -99,40 +88,55 @@
         }
       }
 
-      class Box {
-        constructor(view) {
-          this.view = view;
-          var item = 0;
-          this.dataLoad(item);
+      class Box extends View {
+        constructor() {
+          super();
 
-          this.view.but1.addEventListener("click", function() {
-            item = 0;
-            this.dataLoad(item);
-          });
-          this.view.but2.addEventListener("click", function() {
-            item -= 1;
-            if (item < 0) item = 4;
-            this.dataLoad(item);
-          });
-          this.view.but3.addEventListener("click", function() {
-            item += 1;
-            if (item > 4) item = 0;
-            this.dataLoad(item);
-          });
-          this.view.but4.addEventListener("click", function() {
-            item = 4;
-            this.dataLoad(item);
-          });
+          this.dataLoad();
+
+          //Buttons Action Listener
+          this.but1.addEventListener("click", () => this.setItem(0));
+          this.but2.addEventListener("click", () =>
+            this.setItem((this.item -= 1))
+          );
+          this.but3.addEventListener("click", () =>
+            this.setItem((this.item += 1))
+          );
+          this.but4.addEventListener("click", () => this.setItem(4));
         }
 
-        async dataLoad(item) {
+        //Change item
+        setItem(item) {
+          if (item < 0) item = 4;
+          if (item > this.count - 1) item = 0;
+          this.item = item;
+          console.log(this.item);
+          this.dataLoad();
+        }
+
+        async dataLoad() {
           return await fetch(
             "https://my-json-server.typicode.com/IlyaLytvynov/ads-box-server/ads"
           ).then(res => {
             if (res.ok) {
               res.json().then(res => {
-                console.log(res[item]);
-                this.view.box(res[item]);
+                // this.view.box(res[item]);
+                this.count = Object.keys(res).length;
+                this.img.setAttribute("src", res[this.item].img);
+                this.title.textContent = res[this.item].title;
+                this.desc.textContent =
+                  res[this.item].description.slice(0, 52) + "...";
+
+                this.toggle.addEventListener("click", () => {
+                  if (!this.toggleMode) {
+                    this.desc.textContent = res[this.item].description;
+                    this.toggleMode = !this.toggleMode;
+                  } else {
+                    this.desc.textContent =
+                      res[this.item].description.slice(0, 52) + "...";
+                    this.toggleMode = !this.toggleMode;
+                  }
+                });
               });
             } else {
               console.log("sorry data didn't loaded");
@@ -140,7 +144,7 @@
           });
         }
       }
-      new Box(new View());
+      new Box();
     </script>
   </body>
 </html>
