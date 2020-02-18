@@ -102,15 +102,26 @@
           this.but3.addEventListener("click", () =>
             this.setItem((this.item += 1))
           );
-          this.but4.addEventListener("click", () => this.setItem(4));
+          this.but4.addEventListener("click", () =>
+            this.setItem(this.count - 1)
+          );
+          this.toggle.addEventListener("click", () => {
+            if (!this.toggleMode) {
+              this.desc.textContent = this.description;
+              console.log(this.toggleMode);
+            } else {
+              this.desc.textContent = this.description.slice(0, 52) + "...";
+              console.log(this.toggleMode);
+            }
+            this.toggleMode = !this.toggleMode;
+          });
         }
 
         //Change item
         setItem(item) {
-          if (item < 0) item = 4;
+          if (item < 0) item = this.count - 1;
           if (item > this.count - 1) item = 0;
           this.item = item;
-          console.log(this.item);
           this.dataLoad();
         }
 
@@ -124,19 +135,8 @@
                 this.count = Object.keys(res).length;
                 this.img.setAttribute("src", res[this.item].img);
                 this.title.textContent = res[this.item].title;
-                this.desc.textContent =
-                  res[this.item].description.slice(0, 52) + "...";
-
-                this.toggle.addEventListener("click", () => {
-                  if (!this.toggleMode) {
-                    this.desc.textContent = res[this.item].description;
-                    this.toggleMode = !this.toggleMode;
-                  } else {
-                    this.desc.textContent =
-                      res[this.item].description.slice(0, 52) + "...";
-                    this.toggleMode = !this.toggleMode;
-                  }
-                });
+                this.description = res[this.item].description;
+                this.desc.textContent = this.description.slice(0, 52) + "...";
               });
             } else {
               console.log("sorry data didn't loaded");
