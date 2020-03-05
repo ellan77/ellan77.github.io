@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.js": "/weba/hw3/static/js/main.ab7e4403.chunk.js",
-    "main.js.map": "/weba/hw3/static/js/main.ab7e4403.chunk.js.map",
+    "main.js": "/weba/hw3/static/js/main.50270830.chunk.js",
+    "main.js.map": "/weba/hw3/static/js/main.50270830.chunk.js.map",
     "runtime-main.js": "/weba/hw3/static/js/runtime-main.49543afa.js",
     "runtime-main.js.map": "/weba/hw3/static/js/runtime-main.49543afa.js.map",
     "static/js/2.9cd4fc15.chunk.js": "/weba/hw3/static/js/2.9cd4fc15.chunk.js",
     "static/js/2.9cd4fc15.chunk.js.map": "/weba/hw3/static/js/2.9cd4fc15.chunk.js.map",
     "index.html": "/weba/hw3/index.html",
-    "precache-manifest.ec392651443861871680891aa99af949.js": "/weba/hw3/precache-manifest.ec392651443861871680891aa99af949.js",
+    "precache-manifest.8cdf5f131d1dd88c47b97a594a05f9bc.js": "/weba/hw3/precache-manifest.8cdf5f131d1dd88c47b97a594a05f9bc.js",
     "service-worker.js": "/weba/hw3/service-worker.js",
     "static/js/2.9cd4fc15.chunk.js.LICENSE.txt": "/weba/hw3/static/js/2.9cd4fc15.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.49543afa.js",
     "static/js/2.9cd4fc15.chunk.js",
-    "static/js/main.ab7e4403.chunk.js"
+    "static/js/main.50270830.chunk.js"
   ]
 }
